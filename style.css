@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+/* Reset et styles de base */
 * {
     margin: 0;
     padding: 0;
@@ -21,9 +22,9 @@ body {
 .profile-pic {
     width: 180px;
     height: 180px;
-    border-radius: 50%; /* Rend l'image ronde */
+    border-radius: 50%; /* Rend l'image parfaitement ronde */
     border: 5px solid white;
-    object-fit: cover; /* Évite de déformer l'image */
+    object-fit: cover; /* Empêche l'image d'être écrasée */
     margin-bottom: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
@@ -33,8 +34,10 @@ header {
     background: #2c3e50;
     color: #fff;
     padding: 1rem 5%;
-    position: fixed;
+    position: fixed; /* Reste en haut lors du scroll */
     width: 100%;
+    top: 0;
+    left: 0;
     z-index: 1000;
 }
 
@@ -42,6 +45,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav .logo {
+    font-weight: 600;
+    font-size: 1.5rem;
 }
 
 nav ul {
@@ -56,6 +66,7 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-weight: 400;
     transition: 0.3s;
 }
 
@@ -69,15 +80,21 @@ nav ul li a:hover {
     background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 60px;
+    padding: 80px 20px 0 20px;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 3.5rem); /* Taille adaptative selon l'écran */
     margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
 }
 
 .btn {
@@ -88,51 +105,113 @@ nav ul li a:hover {
     text-decoration: none;
     border-radius: 25px;
     font-weight: 600;
-    margin-top: 20px;
-    transition: 0.3s;
+    margin-top: 25px;
+    transition: all 0.3s ease;
 }
 
 .btn:hover {
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Skills */
+/* Styles globaux des sections */
 section {
-    padding: 80px 10%;
+    padding: 100px 10%; /* Augmentation du padding pour éviter le chevauchement avec le header */
     text-align: center;
 }
 
+section h2 {
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    position: relative;
+}
+
+/* Barre de soulignement sous les titres H2 */
+section h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: #3498db;
+    display: block;
+    margin: 10px auto 0;
+}
+
+/* Skills (Grille) */
 .skills-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 30px;
     margin-top: 30px;
 }
 
 .skill-card {
     background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
 }
 
 .skill-card i {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: #3498db;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+/* Projects */
+.no-project {
+    font-style: italic;
+    color: #777;
+    margin-top: 20px;
 }
 
 /* Contact */
 .contact-info {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* S'adapte sur mobile */
     gap: 40px;
     margin-top: 30px;
 }
 
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+/* Footer */
 footer {
     background: #2c3e50;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    nav ul {
+        gap: 10px;
+    }
+
+    nav ul li {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
